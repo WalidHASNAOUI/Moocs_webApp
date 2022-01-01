@@ -167,3 +167,27 @@ section {
 footer {
     grid-area: f;
 }
+
+.searchContainer{
+    width: 25vw;
+    height: 1px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.searchContainer > i{
+    font-size: 25px;
+    color: #333;
+    cursor: pointer;
+
+}
+
+.searchContainer > input{
+    border: none;
+    outline: none;
+    padding-left: 10px;
+}
+
