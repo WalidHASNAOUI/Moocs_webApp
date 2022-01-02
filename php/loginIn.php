@@ -80,10 +80,8 @@
                                             <i class="fa fa-key icon"></i>
                                             <input type="password" placeholder="Enter your password" name="usrPsw" id="usrPsw" class="txt" value="'.$_POST["usrPsw"].'" required="required">
                                         </div>
+                                        <div class="WrongCoordiante">E-mail doesn"t exist</div>
                                     ';
-                                    echo "
-                                        <div class='WrongCoordiante'>E-mail doesn't exist</div>
-                                    ";
                                 }
                                 else{
                                     //Now the email is correct, but psw is incorrect <c'est sure !!!>
@@ -98,10 +96,8 @@
                                             <i class="fa fa-key icon"></i>
                                             <input type="password" placeholder="Enter your password" name="usrPsw" id="usrPsw" class="txt" value="'.$_POST["usrPsw"].'" required="required">
                                         </div>
+                                        <div class="WrongCoordiante">Password doesn"t match</div>
                                     ';
-                                    echo "
-                                        <div class='WrongCoordiante'>Password doesn't match</div>
-                                    ";
                                 }    
 
                             }else {
