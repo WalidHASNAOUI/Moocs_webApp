@@ -107,6 +107,21 @@ header > div {
 
 #right {
     margin-right: 40px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#right > img {
+    margin-right: 10px;
+}
+
+#userInfo {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 main,aside, section{

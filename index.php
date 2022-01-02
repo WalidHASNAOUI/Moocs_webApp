@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+    // session_unset();
+    // session_destroy();
+    if(!isset($_SESSION["loginMail"]))
+        header("Location: ./php/loginIn.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +32,11 @@
                 <input type="search" name="reperoty" class=" serachBox" placeholder="Search here">
             </div>
             <div id="right">
+                <p id="userInfo"><span>Signed in as</span> <span><?php echo $_SESSION["login"] ?></span></p>
                 <img src="./images/profile.png">
+                <a href="./php/logOut.php">
+                    <p>log Out</p>
+                </a>
             </div>
         </div>
         <div id="southHeader">
