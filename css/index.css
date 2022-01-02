@@ -13,6 +13,7 @@ body {
     grid-gap: 1vw;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 14px;
+    background-color: rgb(229,229,229);
 }
 
 header, main, aside, section, footer {
@@ -45,6 +46,29 @@ header > div {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgb(187, 187, 187);
+}
+
+.searchContainer{
+    width: 25vw;
+    height: 1px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.searchContainer > i{
+    font-size: 25px;
+    color: #333;
+    cursor: pointer;
+
+}
+
+.searchContainer > input{
+    border: none;
+    outline: none;
+    padding-left: 10px;
 }
 
 #southHeader {
@@ -168,26 +192,5 @@ footer {
     grid-area: f;
 }
 
-.searchContainer{
-    width: 25vw;
-    height: 1px;
-    background-color: white;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-}
 
-.searchContainer > i{
-    font-size: 25px;
-    color: #333;
-    cursor: pointer;
-
-}
-
-.searchContainer > input{
-    border: none;
-    outline: none;
-    padding-left: 10px;
-}
 
