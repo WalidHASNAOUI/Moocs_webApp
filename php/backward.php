@@ -26,7 +26,7 @@
 
             //change the path of this user
             try{
-                    $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
+                    $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
                     $sta = $con->prepare("update users set currentPath = :newPath where userMail = :usrMail");
                     $sta->execute(["newPath"=>$newPath ,"usrMail"=>$_SESSION["loginMail"]]);
                     $con = null;
