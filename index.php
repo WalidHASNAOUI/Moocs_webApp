@@ -4,6 +4,17 @@
     // session_destroy();
     if(!isset($_SESSION["loginMail"]))
         header("Location: ./php/loginIn.php");
+    else {
+        //make connection with db / extract the last current path of this user <session> 
+        try{
+            $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
+            $sta = $con->prepare("select currentPath from users where userMail = :usrMail");
+            $sta->execute(["usrMail"=>$_SESSION["loginMail"]]);
+            $currentPath = $sta->fetch(PDO::FETCH_ASSOC);
+        }catch(PDOException $e){
+            die("Error in <index.php> when you try to extract path!!");
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -41,10 +52,10 @@
         </div>
         <div id="southHeader">
             <div>
-                <i class="fas fa-chevron-circle-left"></i>
-                <i class="fas fa-chevron-circle-right"></i>
+                <i id="backward" class="fas fa-chevron-circle-left" onclick="backwardPath()"></i>
+                <i id="forward" class="fas fa-chevron-circle-right" onclick="backwardPath()"></i>
             </div>
-            <p>Moocs/rep1/rep1_2</p>
+            <p id="usrPath"><?php echo $currentPath["currentPath"]; ?></p>
         </div>
     </header>
 
@@ -61,17 +72,18 @@
             </thead>
             <tbody>
                 <?php
-                //get all default dir
-                $defDir = scandir("./Moocs");
+                //get all files of this path 
+                $defDir = scandir(substr($currentPath["currentPath"],1));  //because path is ::> ../Moocs/test :> 
+                                                                            // so we need to remove the first <.> because we're in index.php
 
                 foreach ($defDir as $e) {
                     echo '
-                            <tr>
+                            <tr onclick="selectDir(this)">
                                 <td><i class="fas fa-folder"></i></td>
                                 <td>' . $e . '</td>
-                                <td>' . filetype("./Moocs/" . $e) . '</td>
-                                <td>' . filesize("./Moocs/" . $e) . '</td>
-                                <td>' . date("Y-m-d H:i:s a", filemtime("./Moocs/" . $e)) . '</td>
+                                <td>' . filetype(substr($currentPath["currentPath"],1). "/" . $e) . '</td>
+                                <td>' . filesize(substr($currentPath["currentPath"],1). "/" . $e) . '</td>
+                                <td>' . date("Y-m-d H:i:s a", filemtime(substr($currentPath["currentPath"],1). "/" . $e)) . '</td>
                             </tr>
                         ';
                 }

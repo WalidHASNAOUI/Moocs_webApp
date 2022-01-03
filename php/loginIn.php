@@ -49,7 +49,7 @@
                             $queryAll = "select usrName from users where userMail=:usrMail and usrPassword=:usrPsw";
                             $queryMail = "select count(*) as response from users where userMail=:usrMail";
                             try {
-                                $con = new PDO("mysql:host=localhost;dbname=MiniProjet","root","");
+                                $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
                                 $sta = $con->prepare($queryAll);
                                 $sta->execute($_POST);
                                 $data = $sta->fetch(PDO::FETCH_ASSOC);
@@ -89,12 +89,12 @@
                                         <label for="usrMail">E-mail</label>
                                         <div class="input-container">
                                             <i class="fa fa-envelope icon"></i>
-                                            <input type="text" placeholder="Enter your E-mail" name="usrMail" id="usrMail" class="txtErr" value="'.$_POST["usrMail"].'" required="required">
+                                            <input type="text" placeholder="Enter your E-mail" name="usrMail" id="usrMail" class="txt" value="'.$_POST["usrMail"].'" required="required">
                                         </div>
                                         <label for="">Password</label>
                                         <div class="input-container">
                                             <i class="fa fa-key icon"></i>
-                                            <input type="password" placeholder="Enter your password" name="usrPsw" id="usrPsw" class="txt" value="'.$_POST["usrPsw"].'" required="required">
+                                            <input type="password" placeholder="Enter your password" name="usrPsw" id="usrPsw" class="txtErr" value="'.$_POST["usrPsw"].'" required="required">
                                         </div>
                                         <div class="WrongCoordiante">Password doesn"t match</div>
                                     ';

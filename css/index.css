@@ -148,8 +148,8 @@ main thead > tr {
     border-radius: 15px;
 }
 
-main tbody > tr{
-
+main tbody tr{
+    cursor: pointer;
 }
 
 main tbody > tr:hover {
@@ -160,10 +160,6 @@ main table {
     width: 100%;
     border-collapse: collapse;
 }
-
-/* main table tr {
-    border-bottom: 1px solid rgb(223, 223, 223);
-} */
 
 main table  th {
     margin-left: 20px;
