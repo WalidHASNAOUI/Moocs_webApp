@@ -154,3 +154,11 @@ a{color:inherit;text-decoration:none}
 .button{
 	cursor: pointer;
 }
+input::placeholder{
+	text-align: center;
+}
+.WrongCoordiante{
+    color: red;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+}
