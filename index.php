@@ -14,7 +14,6 @@
             die("Error in <index.php> when you try to extract path!!");
         }
     }
-}
 ?>
 
 <!DOCTYPE html>

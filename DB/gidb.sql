@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 03 jan. 2022 à 09:01
+-- Généré le : mar. 04 jan. 2022 à 15:36
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.0.13
 
@@ -32,19 +32,20 @@ CREATE TABLE `users` (
   `userMail` varchar(50) NOT NULL,
   `usrPassword` varchar(40) NOT NULL,
   `usrName` varchar(20) NOT NULL,
-  `currentPath` varchar(100) NOT NULL
+  `currentPath` varchar(100) NOT NULL DEFAULT '../Moocs',
+  `lastPath` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `userMail`, `usrPassword`, `usrName`, `currentPath`) VALUES
-(9, 'walid@gmail.com', '000', 'walid hasnaoui', '../Moocs/GenieLogiciel/Java'),
-(10, 'yassine', 'ee', '', './Moocs'),
-(14, 'nilson mandila', '123', '', './Moocs'),
-(17, 'hocinne', '1111', '', './Moocs'),
-(18, 'hassane ', 'hasane', '', './Moocs');
+INSERT INTO `users` (`id`, `userMail`, `usrPassword`, `usrName`, `currentPath`, `lastPath`) VALUES
+(9, 'walid@gmail.com', '000', 'walid hasnaoui', '../Moocs/GenieLogiciel/Uml', NULL),
+(10, 'yassine@gmail.com', '000', 'yassine tiemecht', '', NULL),
+(14, 'nilson mandila', '123', '', '', NULL),
+(17, 'hocinne', '1111', '', '', NULL),
+(18, 'hassane ', 'hasane', '', '', NULL);
 
 --
 -- Index pour les tables déchargées
