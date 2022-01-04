@@ -14,6 +14,7 @@
             die("Error in <index.php> when you try to extract path!!");
         }
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -75,8 +76,8 @@
                 include './php/functions.php';
 
                 //get all files of this path 
-                $defDir = scandir(substr($currentPath["currentPath"],1));  //because path is ::> ../Moocs/test :> 
-                                                                            // so we need to remove the first <.> because we're in index.php
+                $defDir = scandir(substr($currentPath["currentPath"], 1));  //because path is ::> ../Moocs/test :> 
+                // so we need to remove the first <.> because we're in index.php
 
                 foreach ($defDir as $e) {
                     echo '

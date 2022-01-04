@@ -1,3 +1,9 @@
+<?php 
+    session_start();
+
+    if(isset($_SESSION["login"]))
+        header("Location: ../index.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,26 +22,97 @@
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
             <div class="login-form">
                 <div class="sign-in-htm">
-                    <div class="group">
-                        <label for="user" class="label">E-mail</label>
-                        <input id="user" type="email" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <input id="check" type="checkbox" class="check" checked>
-                        <label for="check"><span class="icon"></span> Remember me</label>
-                    </div>
-                    <div class="group">
-                        <input type="submit" class="button" value="Sign In">
-                    </div>
-                    <div class="hr"></div>
-                    <div class="foot-lnk">
-                        <a href="#forgot">Forgot Password?</a>
-                    </div>
+                    <form action="../php/signUp_signIn.php" method="post">
+                        <?php
+                        if (!isset($_POST["usrMail"], $_POST["usrPsw"]))
+                            echo '
+                                <div class="group">
+                                    <label for="usrMail" class="label">E-mail</label>
+                                    <input id="user" type="email" class="input" name="usrMail" placeholder="Enter your E-mail" required="required">
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Password</label>
+                                    <input id="pass" type="password" class="input" name="usrPsw" placeholder="Enter your password" required="required">
+                                </div>
+                            ';
+                        else {
+                            //make connection with db
+                            $queryAll = "select usrName from users where userMail=:usrMail and usrPassword=:usrPsw";
+                            $queryMail = "select count(*) as response from users where userMail=:usrMail";
+                            try {
+                                $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
+                                $sta = $con->prepare($queryAll);
+                                $sta->execute($_POST);
+                                $data = $sta->fetch(PDO::FETCH_ASSOC);
+                            } catch (PDOException $e) {
+                                die("error !!");
+                            }
+
+                            if (!$data) {
+                                //check if email is correct
+                                try {
+                                    $sta = $con->prepare($queryMail);
+                                    $sta->execute(["usrMail" => $_POST["usrMail"]]);
+                                    $data = $sta->fetch(PDO::FETCH_ASSOC);
+                                    // var_dump($data);
+                                } catch (PDOException $e) {
+                                    die("Erron when chenking if email exists !!");
+                                }
+                                if ($data["response"] == "0") {
+                                    echo '
+                                            <div class="group">
+                                                <label for="usrMail" class="label">E-mail</label>
+                                                <input id="user" type="email" class="input" name="usrMail" placeholder="Enter your E-mail" value="' . $_POST["usrMail"] . '" required="required">
+                                            </div>
+                                            <div class="group">
+                                                <label for="pass" class="label">Password</label>
+                                                <input id="pass" type="password" class="input" name="usrPsw" placeholder="Enter your password" value="' . $_POST["usrPsw"] . '" required="required">
+                                                <div class="WrongCoordiante">E-mail doesn"t exist</div>
+                                            </div>
+                                        ';
+                                } else {
+                                    //Now the email is correct, but psw is incorrect <c'est sure !!!>
+                                    echo '
+                                            <div class="group">
+                                                <label for="usrMail" class="label">E-mail</label>
+                                                <input id="user" type="email" class="input" name="usrMail" placeholder="Enter your E-mail" value="' . $_POST["usrMail"] . '" required="required">
+                                            </div>
+                                            <div class="group">
+                                                <label for="pass" class="label">Password</label>
+                                                <input id="pass" type="password" class="input" name="usrPsw" placeholder="Enter your password" value="' . $_POST["usrPsw"] . '" required="required">
+                                                <div class="WrongCoordiante">Password doesn"t match</div>
+                                            </div>
+                                        ';
+                                }
+                            } else {
+                                //create new session 
+                                $_SESSION["login"] = $data["usrName"];
+                                $_SESSION["loginMail"] = $_POST["usrMail"];
+
+                                //create cookie (to destroy session auto after (x : hours) if user forgot her session open)
+                                // setcookie("check",$_POST["usrMail"],time()+3600);
+
+                                //redirect user to <index.php>
+                                header("Location: ../index.php");
+                            }
+                        }
+
+                        ?>
+                        <div class="group">
+                            <input id="check" type="checkbox" class="check" checked>
+                            <label for="check"><span class="icon"></span> Remember me</label>
+                        </div>
+                        <div class="group">
+                            <input type="submit" class="button" value="Sign In">
+                        </div>
+                        <div class="hr"></div>
+                        <div class="foot-lnk">
+                            <a href="#forgot">Forgot Password?</a>
+                        </div>
+                    </form>
                 </div>
+
+                <!-- SIGN UP PAGE -->
                 <div class="sign-up-htm">
                     <div class="group">
                         <label for="user" class="label">Username</label>
@@ -47,11 +124,11 @@
                     </div>
                     <div class="group">
                         <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
+                        <input id="pass" type="password" class="input">
                     </div>
                     <div class="group">
                         <label for="pass" class="label">Repeat Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
+                        <input id="pass" type="password" class="input">
                     </div>
                     <div class="group">
                         <input type="submit" class="button" value="Sign Up">
