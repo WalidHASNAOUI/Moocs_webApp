@@ -45,6 +45,27 @@ function backwardPath()
     }
 }
 
+function forwardPath() 
+{
+    let newTbody;
+    let usrPath = document.querySelector("#usrPath");
+    let xjs = new XMLHttpRequest();
+    xjs.open("GET","http://localhost/TPS/miniProject/php/farward.php?perm=Ok");
+    xjs.onreadystatechange = (e)=>{
+        if((e.target.readyState == 4) && (e.target.status == 200))
+        {
+            newTbody = xjs.response;
+            if(newTbody != "empty")
+            {
+                let jsonData = JSON.parse(newTbody);
+                usrPath.innerHTML= jsonData.splice(jsonData.length-1,1)[0];
+                injectToTbody(jsonData);
+            }
+        }
+    }
+    xjs.send();
+}
+
 // inject the response to tbody div <DOM>
 function injectToTbody(newTbody)
 {

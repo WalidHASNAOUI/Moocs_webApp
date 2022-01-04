@@ -1,13 +1,12 @@
 <?php 
     session_start();
-    // session_unset();
-    // session_destroy();
+
     if(!isset($_SESSION["loginMail"]))
         header("Location: ./php/loginIn.php");
     else {
         //make connection with db / extract the last current path of this user <session> 
         try{
-            $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
+            $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
             $sta = $con->prepare("select currentPath from users where userMail = :usrMail");
             $sta->execute(["usrMail"=>$_SESSION["loginMail"]]);
             $currentPath = $sta->fetch(PDO::FETCH_ASSOC);
@@ -53,7 +52,7 @@
         <div id="southHeader">
             <div>
                 <i id="backward" class="fas fa-chevron-circle-left" onclick="backwardPath()"></i>
-                <i id="forward" class="fas fa-chevron-circle-right" onclick="backwardPath()"></i>
+                <i id="forward" class="fas fa-chevron-circle-right" onclick="forwardPath()"></i>
             </div>
             <p id="usrPath"><?php echo $currentPath["currentPath"]; ?></p>
         </div>
@@ -72,6 +71,9 @@
             </thead>
             <tbody>
                 <?php
+                //inlude function.php file <configSize>
+                include './php/functions.php';
+
                 //get all files of this path 
                 $defDir = scandir(substr($currentPath["currentPath"],1));  //because path is ::> ../Moocs/test :> 
                                                                             // so we need to remove the first <.> because we're in index.php
@@ -82,7 +84,7 @@
                                 <td><i class="fas fa-folder"></i></td>
                                 <td>' . $e . '</td>
                                 <td>' . filetype(substr($currentPath["currentPath"],1). "/" . $e) . '</td>
-                                <td>' . filesize(substr($currentPath["currentPath"],1). "/" . $e) . '</td>
+                                <td>' . configSize(filesize(substr($currentPath["currentPath"],1). "/" . $e)) . '</td>
                                 <td>' . date("Y-m-d H:i:s a", filemtime(substr($currentPath["currentPath"],1). "/" . $e)) . '</td>
                             </tr>
                         ';

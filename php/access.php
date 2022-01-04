@@ -7,10 +7,19 @@
         if(!isset($_GET["dir"]))
             header("Location: ../index.php");
         else {
+             //inlude function.php file <configSize>
+             include './functions.php';
+
             $currentPath = "";
             try{
-                // make connection with db / extract the current path of this user
-                $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
+                // make connection with db 
+                $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
+
+                // set null into lastPath of user (because user try to access new directory so the farward path will not work)
+                $sta = $con->prepare("update users set lastPath = NULL where userMail = :userMail");
+                $sta->execute(["userMail"=>$_SESSION["loginMail"]]);
+
+                // extract the current path of this user
                 $sta = $con->prepare("select currentPath from users where userMail = :usrMail");
                 $sta->execute(["usrMail"=>$_SESSION["loginMail"]]);
                 $currentPath = $sta->fetch(PDO::FETCH_ASSOC);
@@ -36,7 +45,7 @@
                                     <td><i class="fas fa-folder"></i></td>
                                     <td>' . $e . '</td>
                                     <td>' . filetype($newPath. "/" .$e) . '</td>
-                                    <td>' . filesize($newPath. "/" .$e) . '</td>
+                                    <td>' . configSize(filesize($newPath. "/" .$e)) . '</td>
                                     <td>' . date("Y-m-d H:i:s a", filemtime($newPath. "/" .$e)) . '</td>
                 ';
             }
