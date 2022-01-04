@@ -1,7 +1,7 @@
 <?php 
     session_start();
     if(!isset($_SESSION["loginMail"]))
-        header("Location: ./loginIn.php");
+        header("Location: ./signUp_signIn.php");
     else {
         // unset and destroy the session
         session_unset();
@@ -11,6 +11,6 @@
         setcookie("check",$_POST["usrMail"],time()-7200);
 
         //redirect user to <login.php>
-        header("Location: ./loginIn.php");
+        header("Location: ./signUp_signIn.php");
     }
 ?>
