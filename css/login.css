@@ -8,8 +8,8 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: rgb(197,197,197);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(197, 197, 197);
 }
 
 main {
@@ -21,7 +21,7 @@ main {
     justify-content: center;
     align-items: center;
 
-    box-shadow: 0px 0px 10px 0 rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.2);
 
 }
 
@@ -31,8 +31,8 @@ main {
 
 #left_div {
     width: 48%;
-    
-    background-color: rgb(136,136,136);
+
+    background-color: rgb(136, 136, 136);
 }
 
 #logo {
@@ -45,10 +45,10 @@ main {
 }
 
 #right_div {
-    width:52%;
+    width: 52%;
 }
 
-#right_div,#formLogin {
+#right_div, #formLogin {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,7 +58,7 @@ main {
 } */
 
 #btnCon {
-    width:100%;
+    width: 100%;
     margin-top: 30px;
     margin-right: 40px;
     display: flex;
@@ -70,13 +70,13 @@ main {
 #btnCon div {
     height: 23px;
     padding: 3px 15px;
-    margin: 0px 10px; 
+    margin: 0px 10px;
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
+
     border-radius: 2px;
 }
 
@@ -85,7 +85,7 @@ main {
 }
 
 #signup {
-    background-color: rgb(136,136,136);
+    background-color: rgb(136, 136, 136);
     color: white;
 }
 
@@ -111,7 +111,7 @@ main {
     justify-content: center;
 }
 
-#formLogin form input,#formLogin form label {
+#formLogin form input, #formLogin form label {
     width: 100%;
 }
 
@@ -124,7 +124,7 @@ main {
     padding-left: 15px;
     height: 30px;
 
-    border:none;
+    border: none;
     border-bottom: 2px solid rgb(112, 128, 144);
 }
 
@@ -133,7 +133,7 @@ main {
     padding-left: 15px;
     height: 30px;
 
-    border:none;
+    border: none;
     border-bottom: 2px solid rgb(230, 60, 55);
 }
 
@@ -149,7 +149,8 @@ main {
     cursor: pointer;
 }
 
-.WrongCoordiante{
+
+.WrongCoordiante {
     color: red;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 12px;
@@ -157,7 +158,8 @@ main {
 }
 
 .input-container {
-    display: -ms-flexbox; /* IE10 */
+    display: -ms-flexbox;
+    /* IE10 */
     display: flex;
     width: 100%;
 }

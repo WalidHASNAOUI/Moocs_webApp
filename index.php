@@ -1,21 +1,20 @@
-<?php 
-    session_start();
-    // session_unset();
-    // session_destroy();
-    if(!isset($_SESSION["loginMail"])){
-        header("Location: ./php/signUp_signIn.php");
+<?php
+session_start();
+// session_unset();
+// session_destroy();
+if (!isset($_SESSION["loginMail"])) {
+    header("Location: ./php/signUp_signIn.php");
+} else {
+    //make connection with db / extract the last current path of this user <session> 
+    try {
+        $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
+        $sta = $con->prepare("select currentPath from users where userMail = :usrMail");
+        $sta->execute(["usrMail" => $_SESSION["loginMail"]]);
+        $currentPath = $sta->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("Error in <index.php> when you try to extract path!!");
     }
-    else {
-        //make connection with db / extract the last current path of this user <session> 
-        try{
-            $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
-            $sta = $con->prepare("select currentPath from users where userMail = :usrMail");
-            $sta->execute(["usrMail"=>$_SESSION["loginMail"]]);
-            $currentPath = $sta->fetch(PDO::FETCH_ASSOC);
-        }catch(PDOException $e){
-            die("Error in <index.php> when you try to extract path!!");
-        }
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,17 +73,17 @@
             <tbody>
                 <?php
                 //get all files of this path 
-                $defDir = scandir(substr($currentPath["currentPath"],1));  //because path is ::> ../Moocs/test :> 
-                                                                            // so we need to remove the first <.> because we're in index.php
+                $defDir = scandir(substr($currentPath["currentPath"], 1));  //because path is ::> ../Moocs/test :> 
+                // so we need to remove the first <.> because we're in index.php
 
                 foreach ($defDir as $e) {
                     echo '
                             <tr onclick="selectDir(this)">
                                 <td><i class="fas fa-folder"></i></td>
                                 <td>' . $e . '</td>
-                                <td>' . filetype(substr($currentPath["currentPath"],1). "/" . $e) . '</td>
-                                <td>' . filesize(substr($currentPath["currentPath"],1). "/" . $e) . '</td>
-                                <td>' . date("Y-m-d H:i:s a", filemtime(substr($currentPath["currentPath"],1). "/" . $e)) . '</td>
+                                <td>' . filetype(substr($currentPath["currentPath"], 1) . "/" . $e) . '</td>
+                                <td>' . filesize(substr($currentPath["currentPath"], 1) . "/" . $e) . '</td>
+                                <td>' . date("Y-m-d H:i:s a", filemtime(substr($currentPath["currentPath"], 1) . "/" . $e)) . '</td>
                             </tr>
                         ';
                 }
