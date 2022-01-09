@@ -17,7 +17,7 @@ if (isset($_SESSION["login"]))
 
 <body>
     <div class="Main">
-        <img src="../images/loginImg.jpg" alt="" class="side">
+        <!-- <img src="../images/background.jpg" alt="" class="side"> -->
         <div class="login-wrap">
             <div class="login-html">
                 <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
@@ -116,29 +116,70 @@ if (isset($_SESSION["login"]))
 
                     <!-- SIGN UP PAGE -->
                     <div class="sign-up-htm">
-                        <div class="group">
-                            <label for="user" class="label">Username</label>
-                            <input id="user" type="text" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">E-mail Address</label>
-                            <input id="pass" type="text" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Password</label>
-                            <input id="pass" type="password" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Repeat Password</label>
-                            <input id="pass" type="password" class="input">
-                        </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="Sign Up">
-                        </div>
-                        <div class="hr"></div>
-                        <div class="foot-lnk">
-                            <label for="tab-1">Already Member?</a>
-                        </div>
+                        <form action="../php/signUp_signIn.php" method="post">
+                            <?php
+                                if (!isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["repassword"])) {
+                                    echo '
+                                            <div class="group">
+                                                <label for="user" class="label">Username</label>
+                                                <input id="user" type="text" class="input" name="username" required>
+                                            </div>
+                                            <div class="group">
+                                                <label for="pass" class="label">E-mail Address</label>
+                                                <input id="pass" type="text" class="input" name="email" required>
+                                            </div>
+                                            <div class="group">
+                                                <label for="pass" class="label">Password</label>
+                                                <input id="pass" type="password" class="input" name="password" required>
+                                            </div>
+                                            <div class="group">
+                                                <label for="pass" class="label">Repeat Password</label>
+                                                <input id="pass" type="password" class="input" name="repassword" required>
+                                            </div>
+                                        ';
+                                } else {
+                                    if ($_POST["password"] !== $_POST["repassword"]) {
+                                        echo '
+                                                <div class="group">
+                                                    <label for="user" class="label">Username</label>
+                                                    <input id="user" type="text" class="input" name="username" value="' . $_POST["username"] . '" required>
+                                                </div>
+                                                <div class="group">
+                                                    <label for="pass" class="label">E-mail Address</label>
+                                                    <input id="pass" type="text" class="input" name="email" value="' . $_POST["email"] . '" required>
+                                                </div>
+                                                <div class="group">
+                                                    <label for="pass" class="label">Password</label>
+                                                    <input id="pass" type="password" class="input" name="password" value="' . $_POST["password"] . '" required>
+                                                </div>
+                                                <div class="group">
+                                                    <label for="pass" class="label">Repeat Password</label>
+                                                    <input id="pass" type="password" class="input" name="repassword" required>
+                                                    <div class="WrongCoordiante">Password doesn"t match</div>
+                                                </div>
+                                        ';
+                                    } else {
+                                        //make connection with db
+                                        $query = "insert into users(userMail, usrPassword, usrName) values (:a, :b, :c)";
+                                        try {
+                                            $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
+                                            $sta = $con->prepare($query);
+                                            $sta->execute(['a' => $_POST["email"], 'b' => $_POST["password"], 'c' => $_POST["username"]]);
+                                        } catch (PDOException $e) {
+                                            die("E-mail Already exist!!");
+                                        }
+                                        header("Location: ../index.php");
+                                    } 
+                                }
+                            ?>
+                            <div class="group">
+                                <input type="submit" class="button" value="Sign Up">
+                            </div>
+                            <div class="hr"></div>
+                            <div class="foot-lnk">
+                                <label for="tab-1">Already Member?</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
