@@ -36,6 +36,7 @@
             }catch(PDOException $e) {
                 die("Error in <Access.php>");
             }
+            
             // list all subdir of the $_GET["dir"]
             $subDir = scandir($newPath);  //return array("." , ".." , ....);
             $response;

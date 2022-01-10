@@ -42,7 +42,7 @@ if (isset($_SESSION["login"]))
                                 $queryAll = "select usrName from users where userMail=:usrMail and usrPassword=:usrPsw";
                                 $queryMail = "select count(*) as response from users where userMail=:usrMail";
                                 try {
-                                    $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
+                                    $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "c++javajs");
                                     $sta = $con->prepare($queryAll);
                                     $sta->execute($_POST);
                                     $data = $sta->fetch(PDO::FETCH_ASSOC);
@@ -162,7 +162,7 @@ if (isset($_SESSION["login"]))
                                         //make connection with db
                                         $query = "insert into users(userMail, usrPassword, usrName) values (:a, :b, :c)";
                                         try {
-                                            $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
+                                            $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "++");
                                             $sta = $con->prepare($query);
                                             $sta->execute(['a' => $_POST["email"], 'b' => $_POST["password"], 'c' => $_POST["username"]]);
                                         } catch (PDOException $e) {
