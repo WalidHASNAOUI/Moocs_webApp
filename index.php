@@ -35,6 +35,7 @@
     <header>
         <div id="topHeader">
             <div id="left">
+                <img src="./images/online-learning.png" alt="" id="logo">
                 <p id="pageTitle">LISTER</p>
             </div>
             <div class="searchContainer">

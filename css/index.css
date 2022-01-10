@@ -108,6 +108,15 @@ header > div {
 
 #left {
     margin-left: 40px;
+    display: flex;
+}
+
+#logo{
+    margin-top: 17px;
+}
+
+#left >p {
+    margin-left: 5px;
 }
 
 #right {
