@@ -76,8 +76,8 @@
                 include './php/functions.php';
 
                 //get all files of this path 
-                $defDir = scandir(substr($currentPath["currentPath"], 1));  //because path is ::> ../Moocs/test :> 
-                // so we need to remove the first <.> because we're in index.php
+                $defDir = array_slice(scandir(substr($currentPath["currentPath"], 1)),2);  //because path is ::> ../Moocs/test :> 
+                                                                            // so we need to remove the first <.> because we're in index.php
 
                 foreach ($defDir as $e) {
                     echo '
@@ -96,14 +96,14 @@
     </main>
 
     <section>
-        <video width="100%" height="98%" controls="controls">  
-            <source src="./Moocs/ProgrammationWeb/Ch1_FrontEnd/Css/zoom_1.mp4" type="video/mp4">
+        <video width="100%" height="98%" poster="./DB/images/mooc.jpeg" controls>  
+            <source src="./DB/Video/moocsDef.mp4" type="video/mp4">
         </video>
     </section>
 
     <aside>
         <?php
-        $array = scandir("./Moocs");
+        $array = array_slice(scandir("./Moocs"),2);
         foreach ($array as $e) {
             echo '<p>' . $e . ' --> ' . date('Y-m-d G:i:s a', filemtime("./Moocs/" . $e)) . ' --> ' . filesize("./Moocs/$e") . 'B  -->' . filetype("./Moocs/$e") . '</p></br>';
         }

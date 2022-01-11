@@ -44,7 +44,7 @@
             $con = null;
 
             // prepare sub directories
-            $dirArray = scandir($newCurrentPath);
+            $dirArray = array_slice(scandir($newCurrentPath),2);
             $response;
             foreach($dirArray as $e)
             {

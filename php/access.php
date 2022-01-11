@@ -38,7 +38,8 @@
             }
             
             // list all subdir of the $_GET["dir"]
-            $subDir = scandir($newPath);  //return array("." , ".." , ....);
+            $subDir = array_slice(scandir($newPath),2);  //return array("." , ".." , ....);
+            // var_dump($subDir);
             $response;
             foreach($subDir as $e)
             {

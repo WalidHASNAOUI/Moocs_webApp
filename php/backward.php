@@ -46,7 +46,7 @@
             }
 
             //liste all sub directory of this path
-            $subDir = scandir($newPath); 
+            $subDir = array_slice(scandir($newPath),2);
             $response;
             foreach($subDir as $e)
             {
