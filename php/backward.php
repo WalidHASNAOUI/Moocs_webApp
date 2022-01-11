@@ -12,7 +12,7 @@
 
             //saving the old path as last path of this users in DB
             try {
-                $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
+                $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
                 $sta = $con->prepare("update users set lastPath = :lastPath where userMail = :userMail");
                 $sta->execute(["lastPath"=>$_GET["path"], "userMail"=>$_SESSION["loginMail"]]);
             }catch(PDOException $e) {
