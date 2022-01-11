@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION["loginMail"]))
-        header("Location: ./loginIn.php");
+        header("Location: ./signUp_signIn.php");
     else {
         if(!isset($_GET["dir"]))
             header("Location: ../index.php");
@@ -13,7 +13,7 @@
             $currentPath = "";
             try{
                 // make connection with db 
-                $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
+                $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
 
                 // set null into lastPath of user (because user try to access new directory so the farward path will be null)
                 $sta = $con->prepare("update users set lastPath = NULL where userMail = :userMail");
@@ -32,9 +32,15 @@
             
             // List all subdir of the $_GET["dir"]
             $subDir = array_slice(scandir($newPath),2);  //return array("." , ".." , ....);
+<<<<<<< HEAD
 
             // Checking if the folder is empty or not
             if(count($subDir) != 0)
+=======
+            // var_dump($subDir);
+            $response = [];
+            foreach($subDir as $e)
+>>>>>>> 0aee7647e5cd918e144860872c68824cf9ade816
             {
                  //save the <new path> of this user 
                 try{

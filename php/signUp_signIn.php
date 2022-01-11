@@ -42,7 +42,7 @@ if (isset($_SESSION["login"]))
                                 $queryAll = "select usrName from users where userMail=:usrMail and usrPassword=:usrPsw";
                                 $queryMail = "select count(*) as response from users where userMail=:usrMail";
                                 try {
-                                    $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "c++javajs");
+                                    $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
                                     $sta = $con->prepare($queryAll);
                                     $sta->execute($_POST);
                                     $data = $sta->fetch(PDO::FETCH_ASSOC);
@@ -160,11 +160,11 @@ if (isset($_SESSION["login"]))
                                         ';
                                     } else {
                                         //make connection with db
-                                        $query = "insert into users(userMail, usrPassword, usrName) values (:a, :b, :c)";
+                                        $query = "insert into users(userMail, usrPassword, usrName, currentPath) values (:a, :b, :c, :d)";
                                         try {
-                                            $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "++");
+                                            $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
                                             $sta = $con->prepare($query);
-                                            $sta->execute(['a' => $_POST["email"], 'b' => $_POST["password"], 'c' => $_POST["username"]]);
+                                            $sta->execute(['a' => $_POST["email"], 'b' => $_POST["password"], 'c' => $_POST["username"], 'd' => "../Moocs" ]);
                                         } catch (PDOException $e) {
                                             die("E-mail Already exist!!");
                                         }
