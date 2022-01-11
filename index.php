@@ -93,6 +93,20 @@
                 ?>
             </tbody>
         </table>
+        <div id="errorEmpty">
+            <div id="errorHeader">
+                <p>Error when loading cours</p>
+                <i onclick="closeErr()" class="fas fa-power-off"></i>
+            </div>
+            <div id="errorMain">
+                <p>An error occured when reading the content of this cours : <b>|This cours is empty now|</b></p>
+            </div>
+            <div id="errorBtn">
+                <button onclick="closeErr()">
+                    <p>Ok</p>
+                </button>
+            </div>
+        </div>
     </main>
 
     <section>

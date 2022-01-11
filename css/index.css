@@ -150,6 +150,7 @@ main,aside, section{
 }
 
 main {
+    position: relative;
     padding: 0 50px;
     margin-left: 10px;
     grid-area: m;
@@ -209,9 +210,84 @@ main table i {
     padding-right: -10px;  
   }
   
-  #name {
-      padding-right: 10vw;
-  }
+#name {
+    padding-right: 10vw;
+}
+
+#errorEmpty {
+    height: 25%;
+    width: 40%;
+    position: fixed;
+    top: 0;
+    left: 30%;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+
+    border: 1px solid rgb(146, 146, 146);
+    background-color: rgb(229,229,229);
+    color: black;
+    box-shadow: 0 2px 15px 0 rgb(0,0,0,0.2) , 0 3px 12px 0 rgb(0,0,0,0.12);
+}
+
+#errorEmpty p , #errorEmpty i{
+    margin: 10px;
+}
+
+#errorMain ,#errorHeader, #errorBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#errorMain {
+    height: 50%;
+    border-bottom: 1px solid rgb(145, 145, 145);
+}
+
+#errorHeader {
+    height: 30%;
+
+    border-bottom: 1px solid rgb(105, 105, 105);
+    background-color: rgb(145, 145, 145);
+}
+
+#errorHeader p {
+    color: rgb(27, 27, 27);
+}
+
+#errorBtn button {
+    height: 25px;
+    width: 40px;
+    margin: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    outline: none;
+    border: 1px solid rgb(37, 37, 37);   
+    border-radius: 3px;
+    background-color: rgb(88, 137, 192);
+    color: white;
+    font-weight: bolder;
+
+    cursor: pointer;
+
+}
+
+#errorEmpty i {
+    color: rgb(85, 85, 85);
+    cursor: pointer;
+    transition: all 0.5s ;
+}
+
+#errorEmpty i:hover {
+    color: rgb(51, 51, 51);
+}
 
 aside {
     margin-right: 10px;

@@ -14,9 +14,14 @@ function selectDir(targetE)
         xjs.onreadystatechange = (e)=>{
             if((e.target.readyState == 4) && (e.target.status == 200))
             {
-                newTbody = JSON.parse(xjs.response);  //receive (json array)
-                usrPath.innerHTML = usrPath.innerHTML + "/" + dirSelected;
-                injectToTbody(newTbody);
+                if(e.target.responseText != "empty")
+                {
+                    newTbody = JSON.parse(xjs.response);  //receive (json array)
+                    usrPath.innerHTML = usrPath.innerHTML + "/" + dirSelected;
+                    injectToTbody(newTbody);
+                }else {
+                    document.querySelector("#errorEmpty").style.display = "flex";
+                }
             }
         }
         xjs.send();
@@ -108,4 +113,10 @@ function injectToSection(newVidoeSrc)
     videoDiv.innerHTML = newVidoeSrc;
     bodySection.innerHTML = "";
     bodySection.appendChild(videoDiv);
+}
+
+function closeErr(element)
+{
+    let errorDib = document.querySelector("#errorEmpty");
+    errorDib.style.display = "none";
 }
