@@ -6,7 +6,7 @@ function selectDir(targetE)
     let usrPath = document.querySelector("#usrPath");
     let xjs = new XMLHttpRequest();
 
-    if(dirSelected.slice(-4) != ".mp4")
+    if ((dirSelected.slice(-4) != ".mp4") && (dirSelected.slice(-4) != ".pdf"))
     {
         // prepare request to <apatch server> using <Ajax>
         let newTbody = "";
@@ -26,19 +26,21 @@ function selectDir(targetE)
             }
         }
         xjs.send();
-    }else {
-        let newSection = null;
+    }else if(dirSelected.slice(-4) == ".mp4") {
+            let newSection = null;
 
-        //prepare request to <apatch server>
-        xjs.open("GET","http://localhost/TPS/miniProject/php/generateVideo.php?vd="+dirSelected);
-        xjs.onreadystatechange = (e)=>{
-            if((e.target.readyState == 4) && (e.target.status == 200))
-            {
-                newSection = xjs.responseText; //receive the <source div> (string)
-                injectToSection(newSection);
+            //prepare request to <apatch server>
+            xjs.open("GET","http://localhost/TPS/miniProject/php/generateVideo.php?vd="+dirSelected);
+            xjs.onreadystatechange = (e)=>{
+                if((e.target.readyState == 4) && (e.target.status == 200))
+                {
+                    newSection = xjs.responseText; //receive the <source div> (string)
+                    injectToSection(newSection);
+                }
             }
-        }
-        xjs.send();
+            xjs.send();
+    }else if(dirSelected.slice(-4) == ".pdf") {
+        location.href = "http://localhost/TPS/miniProject/php/openPdf.php?file="+dirSelected;
     }
 }
 
