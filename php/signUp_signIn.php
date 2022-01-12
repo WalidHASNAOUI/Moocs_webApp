@@ -142,7 +142,7 @@ if (isset($_SESSION["login"]))
 
                     <!-- SIGN UP PAGE -->
                     <div class="sign-up-htm">
-                        <form action="../php/signUp_signIn.php" method="post">
+                        <form action="../php/signUp_signIn.php" method="post" class="hideSignIn">
                             <?php
                                 if (!isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["repassword"])) {
                                     echo '
@@ -156,11 +156,11 @@ if (isset($_SESSION["login"]))
                                             </div>
                                             <div class="group">
                                                 <label for="pass" class="label">Password</label>
-                                                <input id="pass" type="password" class="input" name="password" required>
+                                                <input id="pass1" type="password" class="input" name="password" required>
                                             </div>
                                             <div class="group">
                                                 <label for="pass" class="label">Repeat Password</label>
-                                                <input id="pass" type="password" class="input" name="repassword" required>
+                                                <input id="pass2" type="password" class="input" name="repassword" required>
                                             </div>
                                         ';
                                 } else {
@@ -211,6 +211,7 @@ if (isset($_SESSION["login"]))
             </div>
         </div>
     </div>
+    <script src="../js/scriptSign.js"></script>
 
 </body>
 
