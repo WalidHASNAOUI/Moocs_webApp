@@ -9,7 +9,7 @@
         else {
             try{
                 // make connection with DB
-                $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
+                $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
 
                 // extract the current path 
                 $sta = $con->prepare("select currentPath from users where userMail=:usrMail");

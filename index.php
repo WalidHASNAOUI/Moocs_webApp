@@ -6,7 +6,7 @@ if (!isset($_SESSION["loginMail"]))
 else {
     //make connection with db / extract the last current path of this user <session> 
     try {
-        $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "c++javajs");
+        $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
         $sta = $con->prepare("select currentPath from users where userMail = :usrMail");
         $sta->execute(["usrMail" => $_SESSION["loginMail"]]);
         $currentPath = $sta->fetch(PDO::FETCH_ASSOC);
@@ -40,13 +40,13 @@ else {
             </div>
             <div class="searchContainer">
                 <i class="fa fa-search" aria-hidden="true"></i>
-                <input type="search" name="reperoty" class=" serachBox" placeholder="Search here"  oninput="searchRep(this)">
+                <input type="search" name="reperoty" class=" serachBox" placeholder="Search here" oninput="searchRep(this)">
             </div>
             <div id="right">
-                <p id="userInfo"><span>Signed in as</span> <span><?php echo $_SESSION["login"] ?></span></p>
+                <p id="userInfo"><span>Welcome Dear,</span> <span id="nameLabel"><?php echo $_SESSION["login"] ?></span></p>
                 <img src="./images/profile.png">
                 <a href="./php/logOut.php">
-                    <p>log Out</p>
+                    <button id="logOutBtn">log out</button>
                 </a>
             </div>
         </div>
@@ -82,7 +82,7 @@ else {
                 foreach ($defDir as $e) {
                     echo '
                             <tr onclick="selectDir(this)">
-                                <td>'.generateIcon(substr($currentPath["currentPath"], 1) . "/" . $e).'</td>
+                                <td>' . generateIcon(substr($currentPath["currentPath"], 1) . "/" . $e) . '</td>
                                 <td class="courstitle">' . $e . '</td>
                                 <td>' . filetype(substr($currentPath["currentPath"], 1) . "/" . $e) . '</td>
                                 <td>' . configSize(filesize(substr($currentPath["currentPath"], 1) . "/" . $e)) . '</td>

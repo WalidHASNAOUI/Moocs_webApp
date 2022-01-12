@@ -31,7 +31,7 @@ function selectDir(targetE)
             let newSection = null;
 
             //prepare request to <apatch server>
-            xjs.open("GET","http://localhost/TPS/miniProject/php/generateVideo.php?vd="+dirSelected);
+            xjs.open("GET","http://localhost/Moocs_webApp/php/generateVideo.php?vd="+dirSelected);
             xjs.onreadystatechange = (e)=>{
                 if((e.target.readyState == 4) && (e.target.status == 200))
                 {
@@ -58,7 +58,7 @@ function backwardPath()
     if(usrPathArr[usrPathArr.length-1] != "Moocs")
     {
         let xjs = new XMLHttpRequest();
-        xjs.open("GET","http://localhost/TPS/miniProject/php/backward.php?path="+usrPath.innerHTML);
+        xjs.open("GET","http://localhost/Moocs_webApp/php/backward.php?path="+usrPath.innerHTML);
         xjs.onreadystatechange = (e)=>{
             if((e.target.readyState == 4) && (e.target.status == 200))
             {
@@ -79,7 +79,7 @@ function forwardPath()
     let newTbody;
     let usrPath = document.querySelector("#usrPath");
     let xjs = new XMLHttpRequest();
-    xjs.open("GET","http://localhost/TPS/miniProject/php/farward.php?perm=Ok");
+    xjs.open("GET","http://localhost/Moocs_webApp/php/farward.php?perm=Ok");
     xjs.onreadystatechange = (e)=>{
         if((e.target.readyState == 4) && (e.target.status == 200))
         {

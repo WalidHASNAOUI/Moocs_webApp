@@ -13,7 +13,7 @@
             $currentPath = "";
             try{
                 // make connection with db 
-                $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
+                $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
 
                 // set null into lastPath of user (because user try to access new directory so the farward path will be null)
                 $sta = $con->prepare("update users set lastPath = NULL where userMail = :userMail");

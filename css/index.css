@@ -8,12 +8,12 @@ body {
     grid-template-columns: 23vw 52vw 23vw;
     grid-template-rows: auto 1fr 2fr;
     grid-template-areas: "h h h"
-                         "m m s"
-                         "m m a";
+        "m m s"
+        "m m a";
     grid-gap: 1vw;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 14px;
-    background-color: rgb(229,229,229);
+    background-color: rgb(229, 229, 229);
 }
 
 header, main, aside, section, footer {
@@ -25,16 +25,16 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(49,49,49);
+    background-color: rgb(49, 49, 49);
     color: white;
 }
 
-header > div {
+header>div {
     width: 100%;
 }
 
 #pageTitle {
-    font-family: "Candara",sans-serif;
+    font-family: "Candara", sans-serif;
     font-size: 26px;
     font-weight: bold;
 }
@@ -52,7 +52,7 @@ header > div {
     transform: translateX(-20px);
 }
 
-.searchContainer{
+.searchContainer {
     width: 25vw;
     height: 1px;
     background-color: white;
@@ -62,14 +62,14 @@ header > div {
     padding: 20px;
 }
 
-.searchContainer > i{
+.searchContainer>i {
     font-size: 25px;
     color: #333;
     cursor: pointer;
 
 }
 
-.searchContainer > input{
+.searchContainer>input {
     border: none;
     outline: none;
     width: 100%;
@@ -88,7 +88,7 @@ header > div {
     align-items: center;
 }
 
-#southHeader > p {
+#southHeader>p {
     height: 100%;
     margin-left: 10px;
     padding-left: 20px;
@@ -97,9 +97,10 @@ header > div {
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+
 }
-#southHeader > div > i {
+
+#southHeader>div>i {
     margin: 0 5px;
     font-size: 20px;
     cursor: pointer;
@@ -115,11 +116,11 @@ header > div {
     display: flex;
 }
 
-#logo{
+#logo {
     margin-top: 17px;
 }
 
-#left >p {
+#left>p {
     margin-left: 5px;
 }
 
@@ -132,7 +133,7 @@ header > div {
     align-items: center;
 }
 
-#right > img {
+#right>img {
     margin-right: 10px;
 }
 
@@ -142,11 +143,11 @@ header > div {
     flex-direction: column;
 }
 
-main,aside, section{
+main, aside, section {
     border-radius: 3px;
-    background-color: rgb(49,49,49);
-    box-shadow: 0 2px 15px 0 rgb(0,0,0,0.2) , 0 3px 12px 0 rgb(0,0,0,0.12);
-    color:rgb(248, 248, 248);
+    background-color: rgb(49, 49, 49);
+    box-shadow: 0 2px 15px 0 rgb(0, 0, 0, 0.2), 0 3px 12px 0 rgb(0, 0, 0, 0.12);
+    color: rgb(248, 248, 248);
 }
 
 main {
@@ -154,41 +155,41 @@ main {
     padding: 0 50px;
     margin-left: 10px;
     grid-area: m;
-    overflow: auto;   
+    overflow: auto;
     /* display: */
     /* flex-direction: row; */
     justify-content: center;
 }
 
-main thead > tr {
+main thead>tr {
     position: sticky;
     top: 0;
-    background-color: rgb(49,49,49);
+    background-color: rgb(49, 49, 49);
 }
 
-main tbody tr{
-    display:table-row;
+main tbody tr {
+    display: table-row;
     cursor: pointer;
 }
 
-main tbody > tr:hover {
+main tbody>tr:hover {
     /* border-radius: 5px; */
     /* background-color: rgb(126, 115, 115); */
 }
 
-main table { 
+main table {
     width: 100%;
     border-collapse: collapse;
 }
 
-main table  th {
+main table th {
     margin-left: 20px;
     height: 20px !important;
     padding: 25px 0;
     text-align: left;
 }
 
-main table  td {
+main table td {
     /* height:5px; */
     /* height: 0px !important; */
     padding: 18px 0;
@@ -200,9 +201,9 @@ main table i {
 }
 
 #file {
-    padding-right: -10px;  
-  }
-  
+    padding-right: -10px;
+}
+
 #name {
     padding-right: 10vw;
 }
@@ -219,16 +220,16 @@ main table i {
     justify-content: center;
 
     border: 1px solid rgb(146, 146, 146);
-    background-color: rgb(229,229,229);
+    background-color: rgb(229, 229, 229);
     color: black;
-    box-shadow: 0 2px 15px 0 rgb(0,0,0,0.2) , 0 3px 12px 0 rgb(0,0,0,0.12);
+    box-shadow: 0 2px 15px 0 rgb(0, 0, 0, 0.2), 0 3px 12px 0 rgb(0, 0, 0, 0.12);
 }
 
-#errorEmpty p , #errorEmpty i{
+#errorEmpty p, #errorEmpty i {
     margin: 10px;
 }
 
-#errorMain ,#errorHeader, #errorBtn {
+#errorMain, #errorHeader, #errorBtn {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -262,7 +263,7 @@ main table i {
     align-items: center;
 
     outline: none;
-    border: 1px solid rgb(37, 37, 37);   
+    border: 1px solid rgb(37, 37, 37);
     border-radius: 3px;
     background-color: rgb(88, 137, 192);
     color: white;
@@ -275,7 +276,7 @@ main table i {
 #errorEmpty i {
     color: rgb(236, 236, 236);
     cursor: pointer;
-    transition: all 0.5s ;
+    transition: all 0.5s;
 }
 
 #errorEmpty i:hover {
@@ -284,14 +285,14 @@ main table i {
 
 aside {
     margin-right: 10px;
-    background-color: rgb(49,49,49);
+    background-color: rgb(49, 49, 49);
     grid-area: a;
     overflow: hidden;
 }
 
 section {
     margin-right: 10px;
-    background-color: rgb(49,49,49);
+    background-color: rgb(49, 49, 49);
     grid-area: s;
     overflow: auto;
 }
@@ -300,5 +301,21 @@ footer {
     grid-area: f;
 }
 
+#logOutBtn {
+    outline: none;
+    border: solid 2px;
+    border-radius: 20px;
+    background-color: #377771;
+    color: white;
+    width: 100px;
+    height: 35px;
+    cursor: pointer;
+    text-transform: capitalize;
+    font-weight: 500;
+}
 
-
+#nameLabel {
+    color: #81b29a;
+    font-weight: 600;
+    margin-left: -15px;
+}
