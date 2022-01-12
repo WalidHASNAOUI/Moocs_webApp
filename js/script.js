@@ -11,7 +11,7 @@ function selectDir(targetE)
     {
         // prepare request to <apatch server> using <Ajax>
         let newTbody = "";
-        xjs.open("GET","http://localhost/TPS/miniProject/php/access.php?dir="+dirSelected)+"&ext=";
+        xjs.open("GET","http://localhost/Moocs_webApp/php/access.php?dir="+dirSelected)+"&ext=";
         xjs.onreadystatechange = (e)=>{
             if((e.target.readyState == 4) && (e.target.status == 200))
             {
@@ -41,11 +41,11 @@ function selectDir(targetE)
             }
             xjs.send();
     }else if(dirSelected.slice(-4) == ".pdf") {
-        location.href = "http://localhost/TPS/miniProject/php/openPdf.php?file="+dirSelected+"&ext=pdf";
+        location.href = "http://localhost/Moocs_webApp/php/openPdf.php?file="+dirSelected+"&ext=pdf";
     }else if((dirSelected.slice(-4) == ".zip") || (dirSelected.slice(-4) == ".rar")) {
         console.log(dirSelected.slice(-4));
         console.log(dirSelected);
-        location.href = "http://localhost/TPS/miniProject/php/openPdf.php?file="+dirSelected+"&ext=zip";
+        location.href = "http://localhost/Moocs_webApp/php/openPdf.php?file="+dirSelected+"&ext=zip";
     }
 }
 

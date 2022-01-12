@@ -9,7 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: rgb(197, 197, 197);
+    background: url("../images/main.jpg") no-repeat center;
 }
 
 main {
