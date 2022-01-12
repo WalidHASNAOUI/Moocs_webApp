@@ -13,7 +13,7 @@ if (isset($_SESSION["login"]))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOOCS | SIGN IN</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/signUp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -41,7 +41,7 @@ if (isset($_SESSION["login"]))
                 </div>
                 <form method="POST" action="../php/SignUp.php">
                     <?php
-                        if (!isset($_POST["usrMail"], $_POST["usrPsw"], $_POST["usrName"], $_POST["usrPswd2"])){
+                        if (!isset($_POST["usrName"], $_POST["usrMail"], $_POST["usrPsw"], $_POST["usrPsw2"])){
                             echo '
                                             <label for="usrname">Username</label>
                                             <div class="input-container">
@@ -81,7 +81,7 @@ if (isset($_SESSION["login"]))
                                                 <label for="">Password</label>
                                                 <div class="input-container">
                                                     <i class="fa fa-key icon"></i>
-                                                    <input type="password" placeholder="Enter your password" name="usrPsw" id="usrPsw" value="' . $_POST["usrPsw"] . '" class="txt" required>
+                                                    <input type="password" placeholder="Enter your password" name="usrPsw" id="usrPsw" class="txt" required>
                                                 </div>
                                                 <label for="">Repeat Password</label>
                                                 <div class="input-container">
@@ -90,17 +90,18 @@ if (isset($_SESSION["login"]))
                                                     <div class="WrongCoordiante">Password doesn"t match</div>
                                                 </div>
                                         ';
-                            } else {
+                            }else {
                                 //make connection with db
                                 $query = "insert into users(userMail, usrPassword, usrName) values (:a, :b, :c)";
                                 try {
-                                    $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
+                                    $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "c++javajs");
                                     $sta = $con->prepare($query);
                                     $sta->execute(['a' => $_POST["usrMail"], 'b' => $_POST["usrPsw"], 'c' => $_POST["usrName"]]);
+                                    $con = null;
                                 } catch (PDOException $e) {
                                     die("E-mail Already exist!!");
                                 }
-                                header("Location: ../index.php");
+                                header("Location: ./signIn.php");
                             }
                         }
                     ?>
