@@ -6,7 +6,7 @@
     else {
         try{
             // make connection with db
-            $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
+            $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
 
             // extract the currentPath
             $sta = $con->prepare("select currentPath from users where userMail = :usrMail");
