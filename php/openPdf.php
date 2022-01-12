@@ -20,10 +20,13 @@
                 die("Error !! ::> <openPdf.php>");
             }
 
+            // extract the extention
+
             // display file <.pdf>
             $originalPath = $currentPath."/".$_GET["file"];
-            header("Content-type: application/pdf");
-            header("Content-Length: ".filesize($originalPath));
+            header('Content-Type: application/'.$_GET["ext"]);
+            header('Content-Disposition: attachement; filename="'.pathinfo($originalPath)["basename"].'"');
+            header('Content-Length: '.filesize($originalPath));
 
             readfile($originalPath);
             exit;

@@ -27,16 +27,42 @@ if (isset($_SESSION["login"]))
                         <form action="../php/signUp_signIn.php" method="post">
                             <?php
                             if (!isset($_POST["usrMail"], $_POST["usrPsw"]))
-                                echo '
-                                <div class="group">
-                                    <label for="usrMail" class="label">E-mail</label>
-                                    <input id="user" type="email" class="input" name="usrMail" placeholder="Enter your E-mail" required="required">
-                                </div>
-                                <div class="group">
-                                    <label for="pass" class="label">Password</label>
-                                    <input id="pass" type="password" class="input" name="usrPsw" placeholder="Enter your password" required="required">
-                                </div>
-                            ';
+                            {
+                                if(!isset($_COOKIE["usrMail"]))
+                                    echo '
+                                        <div class="group">
+                                            <label for="usrMail" class="label">E-mail</label>
+                                            <input id="user" type="email" class="input" name="usrMail" placeholder="Enter your E-mail" required="required">
+                                        </div>
+                                        <div class="group">
+                                            <label for="pass" class="label">Password</label>
+                                            <input id="pass" type="password" class="input" name="usrPsw" placeholder="Enter your password" required="required">
+                                        </div>
+                                    ';
+                                else {
+                                    try{
+                                        // gette the password of this user
+                                        $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "c++javajs");
+                                        $sta = $con->prepare("select usrPassword from users where userMail = :usrMail");
+                                        $sta->execute(["usrMail"=>$_COOKIE["usrMail"]]);
+
+                                    // set all info of this user by default inside this form <because of remember me is checked>
+                                    echo '
+                                        <div class="group">
+                                            <label for="usrMail" class="label">E-mail</label>
+                                            <input id="user" type="email" class="input" name="usrMail" value="'.$_COOKIE["usrMail"].'" placeholder="Enter your E-mail" required="required">
+                                        </div>
+                                        <div class="group">
+                                            <label for="pass" class="label">Password</label>
+                                            <input id="pass" type="password" class="input" name="usrPsw" value="'.$sta->fetch(PDO::FETCH_ASSOC)["usrPassword"].'" placeholder="Enter your password" required="required">
+                                        </div>
+                                    ';
+                                    $con = null;
+                                    }catch(PDOException $e) {
+                                        die("Error(0) !!");
+                                    }
+                                }
+                            }
                             else {
                                 //make connection with db
                                 $queryAll = "select usrName from users where userMail=:usrMail and usrPassword=:usrPsw";
@@ -44,10 +70,10 @@ if (isset($_SESSION["login"]))
                                 try {
                                     $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "c++javajs");
                                     $sta = $con->prepare($queryAll);
-                                    $sta->execute($_POST);
+                                    $sta->execute(["usrMail"=>$_POST["usrMail"] ,"usrPsw"=>$_POST["usrPsw"]]);
                                     $data = $sta->fetch(PDO::FETCH_ASSOC);
                                 } catch (PDOException $e) {
-                                    die("error !!");
+                                    die("error(1) !!");
                                 }
 
                                 if (!$data) {
@@ -60,7 +86,7 @@ if (isset($_SESSION["login"]))
                                     } catch (PDOException $e) {
                                         die("Erron when chenking if email exists !!");
                                     }
-                                    if ($data["response"] == "0") {
+                                    if ($data["response"] == "0") { // email doesn't existe
                                         echo '
                                             <div class="group">
                                                 <label for="usrMail" class="label">E-mail</label>
@@ -72,8 +98,7 @@ if (isset($_SESSION["login"]))
                                                 <div class="WrongCoordiante">E-mail doesn"t exist</div>
                                             </div>
                                         ';
-                                    } else {
-                                        //Now the email is correct, but psw is incorrect <c'est sure !!!>
+                                    } else {//Now the email is correct, but psw is incorrect <c'est sure !!!>
                                         echo '
                                             <div class="group">
                                                 <label for="usrMail" class="label">E-mail</label>
@@ -81,7 +106,7 @@ if (isset($_SESSION["login"]))
                                             </div>
                                             <div class="group">
                                                 <label for="pass" class="label">Password</label>
-                                                <input id="pass" type="password" class="input" name="usrPsw" placeholder="Enter your password" value="' . $_POST["usrPsw"] . '" required="required">
+                                                <input id="pass" type="password" class="input" name="usrPsw" placeholder="Enter your password" required="required">
                                                 <div class="WrongCoordiante">Password doesn"t match</div>
                                             </div>
                                         ';
@@ -91,8 +116,9 @@ if (isset($_SESSION["login"]))
                                     $_SESSION["login"] = $data["usrName"];
                                     $_SESSION["loginMail"] = $_POST["usrMail"];
 
-                                    //create cookie (to destroy session auto after (x : hours) if user forgot her session open)
-                                    // setcookie("check",$_POST["usrMail"],time()+3600);
+                                    // check if the user press to remember me button
+                                    if(isset($_POST["rememberMe"]))
+                                        setcookie("usrMail",$_POST["usrMail"],time()+120); //enable for <365 days> 31536000
 
                                     //redirect user to <index.php>
                                     header("Location: ../index.php");
@@ -101,7 +127,7 @@ if (isset($_SESSION["login"]))
 
                             ?>
                             <div class="group">
-                                <input id="check" type="checkbox" class="check" checked>
+                                <input name="rememberMe" id="check" type="checkbox" class="check" checked>
                                 <label for="check"><span class="icon"></span> Remember me</label>
                             </div>
                             <div class="group">
@@ -160,11 +186,11 @@ if (isset($_SESSION["login"]))
                                         ';
                                     } else {
                                         //make connection with db
-                                        $query = "insert into users(userMail, usrPassword, usrName, currentPath) values (:a, :b, :c, :d)";
+                                        $query = "insert into users(userMail, usrPassword, usrName) values (:a, :b, :c)";
                                         try {
                                             $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "c++javajs");
                                             $sta = $con->prepare($query);
-                                            $sta->execute(['a' => $_POST["email"], 'b' => $_POST["password"], 'c' => $_POST["username"], 'd' => "../Moocs" ]);
+                                            $sta->execute(['a' => $_POST["email"], 'b' => $_POST["password"], 'c' => $_POST["username"]]);
                                         } catch (PDOException $e) {
                                             die("E-mail Already exist!!");
                                         }

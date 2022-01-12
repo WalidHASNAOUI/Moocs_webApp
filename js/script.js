@@ -3,14 +3,15 @@ function selectDir(targetE)
 {
     // <DOM> receive the name of directory selected (folder name)
     let dirSelected = targetE.firstElementChild.nextElementSibling.innerHTML; // i guess it could be something wrong here!!!!!!!!!!
+    console.log(dirSelected);
     let usrPath = document.querySelector("#usrPath");
     let xjs = new XMLHttpRequest();
 
-    if ((dirSelected.slice(-4) != ".mp4") && (dirSelected.slice(-4) != ".pdf"))
+    if ((dirSelected.slice(-4) != ".mp4") && (dirSelected.slice(-4) != ".pdf") && (dirSelected.slice(-4) != ".zip") && (dirSelected.slice(-4) != ".rar"))
     {
         // prepare request to <apatch server> using <Ajax>
         let newTbody = "";
-        xjs.open("GET","http://localhost/TPS/miniProject/php/access.php?dir="+dirSelected);
+        xjs.open("GET","http://localhost/TPS/miniProject/php/access.php?dir="+dirSelected)+"&ext=";
         xjs.onreadystatechange = (e)=>{
             if((e.target.readyState == 4) && (e.target.status == 200))
             {
@@ -40,7 +41,11 @@ function selectDir(targetE)
             }
             xjs.send();
     }else if(dirSelected.slice(-4) == ".pdf") {
-        location.href = "http://localhost/TPS/miniProject/php/openPdf.php?file="+dirSelected;
+        location.href = "http://localhost/TPS/miniProject/php/openPdf.php?file="+dirSelected+"&ext=pdf";
+    }else if((dirSelected.slice(-4) == ".zip") || (dirSelected.slice(-4) == ".rar")) {
+        console.log(dirSelected.slice(-4));
+        console.log(dirSelected);
+        location.href = "http://localhost/TPS/miniProject/php/openPdf.php?file="+dirSelected+"&ext=zip";
     }
 }
 

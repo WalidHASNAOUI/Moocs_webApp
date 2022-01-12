@@ -26,6 +26,10 @@ function generateIcon($filePath)
                 return '<i class="fas fa-file-video"></i>';
             case "pdf":
                 return '<i class="fas fa-file-pdf"></i>';
+            case "zip":
+                return '<i class="fas fa-file-archive"></i>';
+            case "rar":
+                return '<i class="fas fa-file-archive"></i>';
         }
     }
 }
