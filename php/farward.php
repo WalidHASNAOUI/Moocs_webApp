@@ -12,7 +12,7 @@
 
             try{
                 // make connection with DB
-                $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
+                $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
                 $newCurrentPath = "";
                 // check if lastPath is not null 
                 $sta = $con->prepare("select lastPath from users where userMail = :userMail");

@@ -9,7 +9,7 @@
         else {
             // extract the current path
             try{
-                $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
+                $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "c++javajs");
                 $sta = $con->prepare("select currentPath from users where userMail = :usrMail");
                 $sta->execute(["usrMail"=>$_SESSION["loginMail"]]);
                 $currentPath = $sta->fetch(PDO::FETCH_ASSOC)["currentPath"];
@@ -32,10 +32,4 @@
             exit;
         }
     }
-    // $filePath = "../Moocs/ProgrammationWeb/Ch1_FrontEnd/Css/GI_pratique.pdf";
-    
-    // header("Content-type: application/pdf");
-    // header("Content-Length: ".filesize($filePath));
-
-    // readfile($filePath);
 ?>

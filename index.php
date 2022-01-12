@@ -6,7 +6,7 @@ if (!isset($_SESSION["loginMail"]))
 else {
     //make connection with db / extract the last current path of this user <session> 
     try {
-        $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
+        $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "c++javajs");
         $sta = $con->prepare("select currentPath from users where userMail = :usrMail");
         $sta->execute(["usrMail" => $_SESSION["loginMail"]]);
         $currentPath = $sta->fetch(PDO::FETCH_ASSOC);
