@@ -12,7 +12,7 @@
 
             try{
                 // make connection with DB
-                $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
+                $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
                 $newCurrentPath = "";
                 // check if lastPath is not null 
                 $sta = $con->prepare("select lastPath from users where userMail = :userMail");
@@ -49,8 +49,8 @@
             foreach($dirArray as $e)
             {
                 $response[] = '
-                                    <td><i class="fas fa-folder"></i></td>
-                                    <td>' . $e . '</td>
+                                    <td>'.generateIcon($newCurrentPath. "/" .$e).'</td>
+                                    <td class="courstitle">' . $e . '</td>
                                     <td>' . filetype($newCurrentPath. "/" .$e) . '</td>
                                     <td>' . configSize(filesize($newCurrentPath. "/" .$e)) . '</td>
                                     <td>' . date("Y-m-d H:i:s a", filemtime($newCurrentPath. "/" .$e)) . '</td>

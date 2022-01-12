@@ -12,7 +12,7 @@
 
             //saving the old path as last path of this users in DB
             try {
-                $con = new PDO("mysql:host=localhost;dbname=gidb","root","");
+                $con = new PDO("mysql:host=localhost;dbname=gidb","root","c++javajs");
                 $sta = $con->prepare("update users set lastPath = :lastPath where userMail = :userMail");
                 $sta->execute(["lastPath"=>$_GET["path"], "userMail"=>$_SESSION["loginMail"]]);
             }catch(PDOException $e) {
@@ -51,8 +51,8 @@
             foreach($subDir as $e)
             {
                 $response[] = '
-                                    <td><i class="fas fa-folder"></i></td>
-                                    <td>' . $e . '</td>
+                                    <td>'.generateIcon($newPath."/".$e).'</td>
+                                    <td class="courstitle">' . $e . '</td>
                                     <td>' . filetype($newPath. "/" .$e) . '</td>
                                     <td>' . configSize(filesize($newPath. "/" .$e)) . '</td>
                                     <td>' . date("Y-m-d H:i:s a", filemtime($newPath. "/" .$e)) . '</td>

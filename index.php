@@ -6,7 +6,7 @@ if (!isset($_SESSION["loginMail"]))
 else {
     //make connection with db / extract the last current path of this user <session> 
     try {
-        $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "");
+        $con = new PDO("mysql:host=localhost;dbname=gidb", "root", "c++javajs");
         $sta = $con->prepare("select currentPath from users where userMail = :usrMail");
         $sta->execute(["usrMail" => $_SESSION["loginMail"]]);
         $currentPath = $sta->fetch(PDO::FETCH_ASSOC);
@@ -35,12 +35,12 @@ else {
     <header>
         <div id="topHeader">
             <div id="left">
-                <img src="./images/online-learning.png" alt="" id="logo">
+                <a href="./php/defaultPath.php"><img src="./images/online-learning.png" alt="" id="logo"></a>
                 <p id="pageTitle">LISTER</p>
             </div>
             <div class="searchContainer">
                 <i class="fa fa-search" aria-hidden="true"></i>
-                <input type="search" name="reperoty" class=" serachBox" placeholder="Search here">
+                <input type="search" name="reperoty" class=" serachBox" placeholder="Search here"  oninput="searchRep(this)">
             </div>
             <div id="right">
                 <p id="userInfo"><span>Signed in as</span> <span><?php echo $_SESSION["login"] ?></span></p>
@@ -82,8 +82,8 @@ else {
                 foreach ($defDir as $e) {
                     echo '
                             <tr onclick="selectDir(this)">
-                                <td><i class="fas fa-folder"></i></td>
-                                <td>' . $e . '</td>
+                                <td>'.generateIcon(substr($currentPath["currentPath"], 1) . "/" . $e).'</td>
+                                <td class="courstitle">' . $e . '</td>
                                 <td>' . filetype(substr($currentPath["currentPath"], 1) . "/" . $e) . '</td>
                                 <td>' . configSize(filesize(substr($currentPath["currentPath"], 1) . "/" . $e)) . '</td>
                                 <td>' . date("Y-m-d H:i:s a", filemtime(substr($currentPath["currentPath"], 1) . "/" . $e)) . '</td>
@@ -95,11 +95,11 @@ else {
         </table>
         <div id="errorEmpty">
             <div id="errorHeader">
-                <p>Error when loading cours</p>
+                <p>ERROR WHEN LOADING : <b><span></span> cours</b></p>
                 <i onclick="closeErr()" class="fas fa-power-off"></i>
             </div>
             <div id="errorMain">
-                <p>An error occured when reading the content of this cours : <b>|This cours is empty now|</b></p>
+                <p>An error occured when reading the content of this cours : <b>This cours is empty now</b></p>
             </div>
             <div id="errorBtn">
                 <button onclick="closeErr()">
@@ -120,7 +120,7 @@ else {
         <script type="text/javascript">
             rssfeed_url = new Array();
             rssfeed_url[0] = "https://rss.app/feeds/scq7aZVJHqqtiJ1e.xml";
-            rssfeed_frame_width = "412";
+            rssfeed_frame_width = "100%";
             rssfeed_frame_height = "530";
             rssfeed_scroll = "on";
             rssfeed_scroll_step = "2";

@@ -1,4 +1,6 @@
 <?php 
+
+// Generate the size of file 
 function configSize($sizeKb)
 {
     if($sizeKb >= 1000)
@@ -11,4 +13,21 @@ function configSize($sizeKb)
     else 
         return round($sizeKb,2)."B";
 }
+
+// Generate icons (folder - .mp4 - .pdf)
+function generateIcon($filePath)
+{
+    if(is_dir($filePath))
+        return '<i class="fas fa-folder">';
+    else {
+        switch(pathinfo($filePath)["extension"])
+        {
+            case "mp4":
+                return '<i class="fas fa-file-video"></i>';
+            case "pdf":
+                return '<i class="fas fa-file-pdf"></i>';
+        }
+    }
+}
+
 ?>
