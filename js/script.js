@@ -1,4 +1,3 @@
-
 function selectDir(targetE)
 {
     // <DOM> receive the name of directory selected (folder name)
@@ -11,7 +10,8 @@ function selectDir(targetE)
     {
         // prepare request to <apatch server> using <Ajax>
         let newTbody = "";
-        xjs.open("GET","http://localhost/Moocs_webApp/php/access.php?dir="+dirSelected)+"&ext=";
+        xjs.open("GET","http://este.ovh/moocs/php/access.php?dir="+dirSelected)+"&ext=";
+        // xjs.open("GET","http://localhost/Moocs_webApp/php/access.php?dir="+dirSelected)+"&ext=";
         xjs.onreadystatechange = (e)=>{
             if((e.target.readyState == 4) && (e.target.status == 200))
             {
@@ -31,7 +31,7 @@ function selectDir(targetE)
             let newSection = null;
 
             //prepare request to <apatch server>
-            xjs.open("GET","http://localhost/Moocs_webApp/php/generateVideo.php?vd="+dirSelected);
+            xjs.open("GET","http://este.ovh/moocs/php/generateVideo.php?vd="+dirSelected);
             xjs.onreadystatechange = (e)=>{
                 if((e.target.readyState == 4) && (e.target.status == 200))
                 {
@@ -41,11 +41,11 @@ function selectDir(targetE)
             }
             xjs.send();
     }else if(dirSelected.slice(-4) == ".pdf") {
-        location.href = "http://localhost/Moocs_webApp/php/openPdf.php?file="+dirSelected+"&ext=pdf";
+        location.href = "http://este.ovh/moocs/php/openPdf.php?file="+dirSelected+"&ext=pdf";
     }else if((dirSelected.slice(-4) == ".zip") || (dirSelected.slice(-4) == ".rar")) {
         console.log(dirSelected.slice(-4));
         console.log(dirSelected);
-        location.href = "http://localhost/Moocs_webApp/php/openPdf.php?file="+dirSelected+"&ext=zip";
+        location.href = "http://este.ovh/moocs/php/openPdf.php?file="+dirSelected+"&ext=zip";
     }
 }
 
@@ -58,7 +58,8 @@ function backwardPath()
     if(usrPathArr[usrPathArr.length-1] != "Moocs")
     {
         let xjs = new XMLHttpRequest();
-        xjs.open("GET","http://localhost/Moocs_webApp/php/backward.php?path="+usrPath.innerHTML);
+        xjs.open("GET","http://este.ovh/moocs/php/backward.php?path="+usrPath.innerHTML);
+        // xjs.open("GET","http://localhost/Moocs_webApp/php/backward.php?path="+usrPath.innerHTML);
         xjs.onreadystatechange = (e)=>{
             if((e.target.readyState == 4) && (e.target.status == 200))
             {
@@ -79,7 +80,8 @@ function forwardPath()
     let newTbody;
     let usrPath = document.querySelector("#usrPath");
     let xjs = new XMLHttpRequest();
-    xjs.open("GET","http://localhost/Moocs_webApp/php/farward.php?perm=Ok");
+    xjs.open("GET","http://este.ovh/moocs/php/farward.php?perm=Ok");
+    // xjs.open("GET","http://localhost/Moocs_webApp/php/farward.php?perm=Ok");
     xjs.onreadystatechange = (e)=>{
         if((e.target.readyState == 4) && (e.target.status == 200))
         {

@@ -8,7 +8,7 @@
         session_destroy();
 
         // delete enabled cookie 
-        setcookie("check",$_POST["usrMail"],time()-7200);
+        // setcookie("check",$_POST["usrMail"],time()-7200);
 
         //redirect user to <login.php>
         header("Location: ./signIn.php");

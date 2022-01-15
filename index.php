@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["loginMail"]))
-    header("Location: ./php/signUp_signIn.php");
+    header("Location: ./php/signIn.php");
 else {
     //make connection with db / extract the last current path of this user <session> 
     try {

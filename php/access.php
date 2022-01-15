@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION["loginMail"]))
-        header("Location: ./signUp_signIn.php");
+        header("Location: ./signIn.php");
     else {
         if(!isset($_GET["dir"]))
             header("Location: ../index.php");

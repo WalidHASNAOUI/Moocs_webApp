@@ -84,6 +84,14 @@ main {
     border: 1px solid rgb(177, 177, 177);
 }
 
+#login p {
+    color: rgb(48, 48, 48);
+}
+
+.link {
+    text-decoration: none;
+}
+
 #signup {
     background-color: rgb(136, 136, 136);
     color: white;

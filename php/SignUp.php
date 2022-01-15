@@ -24,12 +24,12 @@ if (isset($_SESSION["login"]))
         </div>
         <div id="right_div">
             <div id="btnCon">
-                <a href="signIn.php">
+                <a href="signIn.php" class="link">
                     <div id="login">
                         <p>Log In</p>
                     </div>
                 </a>
-                <a href="SignUp.php">
+                <a href="SignUp.php" class="link">
                     <div id="signup">
                         <p>Sign Up</p>
                     </div>

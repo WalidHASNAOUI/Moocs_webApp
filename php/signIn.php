@@ -13,7 +13,7 @@ if (isset($_SESSION["login"]))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOOCS | SIGN IN</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/signIn.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -24,12 +24,12 @@ if (isset($_SESSION["login"]))
         </div>
         <div id="right_div">
             <div id="btnCon">
-                <a href="signIn.php">
+                <a href="signIn.php" class="link">
                     <div id="login">
                         <p>Log In</p>
                     </div>
                 </a>
-                <a href="SignUp.php">
+                <a href="SignUp.php" class="link">
                     <div id="signup">
                         <p>Sign Up</p>
                     </div>
